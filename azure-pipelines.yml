@@ -20,13 +20,14 @@ stages:
 
       displayName: 'Build Maven'
 
-    - script: |
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.SourcesDirectory)/target'
+        artifactName: 'drop'
+        publishLocation: 'Container'
+      displayName: 'Publish Artifact'
+   
 
-        mkdir staging
+   
 
-        cp target/JUnit-Testing-0.0.1-SNAPSHOT.jar $(Agent.HomeDirectory)
-
-        cp target/JUnit-Testing-0.0.1-SNAPSHOT.jar staging
-
-      displayName: 'Upload Artifact'
 
