@@ -1,4 +1,6 @@
-# Maven
+
+
+      # Maven
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -26,14 +28,30 @@ stages:
         artifactName: 'drop'
         publishLocation: 'Container'
       displayName: 'Publish Artifact'
+
+  - job: BuildAndPushDockerImage
+  displayName: 'Build and Push Docker Image'
+  pool:
+    name: myubuntuagentpool
+    dependsOn: Build
+    steps:
+    - task: UseJavaVersion@1
+      inputs:
+      versionSpec: '11'
+
     - task: Docker@2
       inputs:
-          containerRegistry: 'prema'
-          repository: 'prema6396'
-          command: 'buildAndPush'
-          Dockerfile: '**/Dockerfile'
+      containerRegistry: prema
+      repository: https://hub.docker.com/repositories/prema6396
+      command: 'buildAndPush'
+      Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'  # Path to your Dockerfile
+      tags: |
+        $(Build.BuildId)
+        latest
+
    
 
    
+
 
 
