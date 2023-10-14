@@ -33,7 +33,7 @@ stages:
   displayName: 'Build and Push Docker Image'
   pool:
     name: myubuntuagentpool
-    dependsOn: Build
+    
     steps:
     - task: UseJavaVersion@1
       inputs:
