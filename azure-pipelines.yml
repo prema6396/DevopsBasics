@@ -30,10 +30,8 @@ stages:
       displayName: 'Publish Artifact'
 
   - job: BuildAndPushDockerImage
-  displayName: 'Build and Push Docker Image'
-  pool:
-    name: myubuntuagentpool
-    
+    displayName: 'Build and Push Docker Image'
+    dependsOn: Build
     steps:
     - task: UseJavaVersion@1
       inputs:
