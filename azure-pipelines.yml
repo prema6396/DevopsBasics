@@ -26,6 +26,12 @@ stages:
         artifactName: 'drop'
         publishLocation: 'Container'
       displayName: 'Publish Artifact'
+    - task: Docker@2
+      inputs:
+          containerRegistry: 'prema'
+          repository: 'prema6396'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
    
 
    
