@@ -29,12 +29,4 @@ stages:
         cp target/JUnit-Testing-0.0.1-SNAPSHOT.jar staging
 
       displayName: 'Upload Artifact'
-- task: CopyFiles@2
-  inputs:
-    Contents: '**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+
