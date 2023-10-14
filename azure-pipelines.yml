@@ -42,7 +42,7 @@ stages:
     - task: Docker@2
       inputs:
       containerRegistry: prema
-      repository: https://hub.docker.com/repositories/prema6396
+      repository: prema6396/devopsbasics
       command: 'buildAndPush'
       Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'  # Path to your Dockerfile
       tags: |
