@@ -27,17 +27,33 @@ stages:
         artifactName: 'drop'
         publishLocation: 'Container'
       displayName: 'Publish Artifact'
+      
     - task: dependency-check-build-task@6
       inputs:
           projectName: 'security check'
           scanPath: '**/*.csproj'
           format: 'HTML'
-    - task: Docker@2
-      inputs:
-              containerRegistry: 'prema'
-              repository: 'prema6396 / devopsbasics'
-              command: 'buildAndPush'
-              Dockerfile: '**/Dockerfile'
+- stage: 'Dockerize'
+  displayName: 'create Docker image'
+  jobs:
+   - job: 'CreateDockerImage'
+     displayName: 'Build and publish Docker Image'
+     steps:
+
+     - task: DownloadBuildArtifacts@1
+       inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'drop'
+        downloadPath: '.'
+        
+        
+     - task: Docker@2
+       inputs:
+        containerRegistry: 'prema'
+        repository: 'prema6396/devopsbasics'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
       
 
  
