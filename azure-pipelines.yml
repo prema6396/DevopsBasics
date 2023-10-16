@@ -32,6 +32,12 @@ stages:
           projectName: 'security check'
           scanPath: '**/*.csproj'
           format: 'HTML'
+    - task: Docker@2
+      inputs:
+              containerRegistry: 'prema'
+              repository: 'prema6396 / devopsbasics'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
       
 
  
