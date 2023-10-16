@@ -23,7 +23,7 @@ stages:
 
     - task: PublishBuildArtifacts@1
       inputs:
-        pathtoPublish: '$(Build.SourcesDirectory)/webapp/target'
+        pathtoPublish: '$(Build.SourcesDirectory)/webapp/target/webapp.war'
         artifactName: 'drop'
         publishLocation: 'Container'
       displayName: 'Publish Artifact'
