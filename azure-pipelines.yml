@@ -19,7 +19,6 @@ stages:
     - checkout: self
 
     - script: 'mvn -B package --file pom.xml'
-
       displayName: 'Build Maven'
 
     - task: PublishBuildArtifacts@1
