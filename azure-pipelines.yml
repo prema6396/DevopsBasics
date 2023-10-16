@@ -51,7 +51,7 @@ stages:
      - task: Docker@2
        inputs:
         containerRegistry: 'Docker'
-        repository: 'prema6396/devopsbasics'
+        repository: 'prema6396 / devopsbasics'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
       
