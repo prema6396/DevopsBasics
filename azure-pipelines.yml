@@ -28,24 +28,14 @@ stages:
         artifactName: 'drop'
         publishLocation: 'Container'
       displayName: 'Publish Artifact'
-
-  - job: BuildAndPushDockerImage
-    displayName: 'Build and Push Docker Image'
-    dependsOn: Build
-    steps:
-    - task: UseJavaVersion@1
+    - task: dependency-check-build-task@6
       inputs:
-      versionSpec: '11'
+          projectName: 'security check'
+          scanPath: '**/*.csproj'
+          format: 'HTML'
+      
 
-    - task: Docker@2
-      inputs:
-      containerRegistry: prema
-      repository: prema6396/devopsbasics
-      command: 'buildAndPush'
-      Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'  # Path to your Dockerfile
-      tags: |
-        $(Build.BuildId)
-        latest
+ 
 
    
 
